@@ -67,29 +67,38 @@ export default function Login({ status, canResetPassword }: { status?: string, c
                 </div>
 
                 <div className="block mt-4">
-                    <label className="flex items-center">
-                        <Checkbox
-                            name="remember"
-                            checked={data.remember}
-                            onChange={(e) => setData('remember', e.target.checked)}
-                        />
-                        <span className="ml-2 text-sm text-gray-600">Remember me</span>
-                    </label>
+                    <Checkbox
+                        id='remember_me'
+                        name="remember"
+                        checked={data.remember}
+                        onChange={(e) => setData('remember', e.target.checked)}
+                    >
+                        Remember Me
+                    </Checkbox>
                 </div>
 
-                <div className="flex items-center justify-end mt-4">
-                    {canResetPassword && (
+                {canResetPassword && (
+                    <div className='text-end mt-3'>
                         <Link
                             href={route('password.request')}
-                            className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            className="underline text-sm text-gray-600 dark:text-white hover:text-gray-500 rounded-md focus:outline-none"
                         >
                             Forgot your password?
                         </Link>
-                    )}
+                    </div>
+                )}
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        Log in
-                    </PrimaryButton>
+                <PrimaryButton className='w-full mt-3' disabled={processing}>
+                    Log In
+                </PrimaryButton>
+
+                <div className='text-center mt-3'>
+                    <Link
+                        href={route('register')}
+                        className="text-sm text-gray-600 dark:text-white hover:text-gray-500 rounded-md focus:outline-none"
+                    >
+                        Register
+                    </Link>
                 </div>
             </form>
         </GuestLayout>
