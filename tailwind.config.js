@@ -15,6 +15,10 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            gridTemplateColumns: {
+                "sidebar": "300px auto", //for sidebar layout
+                "sidebar-collapsed": "48px auto", //for collapsed sidebar layout
+            },
         },
     },
 
