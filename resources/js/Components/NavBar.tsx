@@ -1,8 +1,9 @@
 import { Link } from '@inertiajs/react';
-import { MdDarkMode, MdLightMode, MdMenu, MdExpandMore } from 'react-icons/md';
+import { MdMenu, MdExpandMore } from 'react-icons/md';
 import { Menu, Transition } from '@headlessui/react';
 import clsx from 'clsx';
 import { Fragment } from 'react';
+import ToggleTheme from './ToggleTheme';
 type Props = {
     username: string;
     setSidebarCollapsed(): void;
@@ -13,7 +14,7 @@ const userNavigation = [
     { name: 'Log out', href: route("logout") },
 ]
 
-const Navbar = ({ username, setSidebarCollapsed }: Props) => {
+const Navbar = ({ username, setSidebarCollapsed }: Props) => { 
     return (
         <div 
             className={clsx(
@@ -32,12 +33,7 @@ const Navbar = ({ username, setSidebarCollapsed }: Props) => {
             </button>
             <div className="flex flex-1 justify-end px-4">
                 <div className="ml-4 flex items-center md:ml-6">
-                    <button
-                        className="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none  rounded-lg text-2xl p-2.5"
-                    >
-                        <MdLightMode />
-                        <MdDarkMode className="hidden" />
-                    </button>
+                    <ToggleTheme />
 
                     <Menu as="div" className="relative ml-3">
                         <div>
