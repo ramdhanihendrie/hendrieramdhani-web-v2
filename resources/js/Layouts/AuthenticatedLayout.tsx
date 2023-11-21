@@ -3,10 +3,11 @@ import { User } from '@/types';
 import clsx from 'clsx';
 import Sidebar from '@/Components/SideBar';
 import Navbar from '@/Components/NavBar';
+import { log } from 'console';
 
 export default function Authenticated({ user, children }: PropsWithChildren<{ user: User }>) {
     const [collapsed, setSidebarCollapsed] = useState(false);
-
+    
     return (
         <div
             className={clsx(
@@ -19,6 +20,7 @@ export default function Authenticated({ user, children }: PropsWithChildren<{ us
         >
             <Sidebar 
                 collapsed={collapsed}
+                role={user.role}
             />
 
             <div>

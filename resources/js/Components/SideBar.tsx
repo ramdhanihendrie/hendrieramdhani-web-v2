@@ -12,9 +12,10 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 
 type Props = {
     collapsed: boolean;
+    role: String;
 };
 
-const navigation = [
+const adminNavigation = [
     { name: 'Dashboard', href: '#', icon: HiHome, current: true },
     { name: 'Team', href: '#', icon: HiUsers, current: false },
     { name: 'Projects', href: '#', icon: HiFolder, current: false },
@@ -23,8 +24,13 @@ const navigation = [
     { name: 'Reports', href: '#', icon: HiChartBar, current: false },
 ]
 
+const userNavigation = [
+    { name: 'Dashboard', href: '#', icon: HiHome, current: true },
+]
+
 const Sidebar = ({
     collapsed,
+    role
 }: Props) => {
     return (
         <div 
@@ -41,7 +47,31 @@ const Sidebar = ({
                 </div>
                 <div className="mt-5 flex flex-grow flex-col">
                     <nav className="flex-1 space-y-1 px-2 pb-4">
-                        {navigation.map((item) => (
+                        {role === 'admin' && adminNavigation.map((item) => (
+                        <a
+                            key={item.name}
+                            href={item.href}
+                            className={clsx(
+                            item.current 
+                            ? 'bg-gray-100 dark:bg-slate-700 text-gray-900 dark:text-gray-100' 
+                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:text-gray-200 dark:hover:bg-slate-600 dark:hover:text-gray-300',
+                            'group flex items-center gap-2 px-2 py-2 text-sm font-medium rounded-md',
+                            )}
+                        >
+                            <item.icon
+                            className={clsx(
+                                item.current 
+                                ? 'text-gray-500 dark:text-gray-200' 
+                                : 'text-gray-400 group-hover:text-gray-500 dark:group-hover:text-gray-400',
+                                'flex-shrink-0 h-6 w-6'
+                            )}
+                            aria-hidden="true"
+                            />
+                            {collapsed && item.name}
+                        </a>
+                        ))}
+                        
+                        {role === 'user' && userNavigation.map((item) => (
                         <a
                             key={item.name}
                             href={item.href}
