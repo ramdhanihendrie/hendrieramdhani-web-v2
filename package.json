@@ -25,6 +25,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@emailjs/browser": "^3.11.0",
         "clsx": "^2.0.0",
         "react-icons": "^4.12.0"
     }

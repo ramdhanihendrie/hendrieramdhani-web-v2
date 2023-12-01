@@ -2,6 +2,7 @@ import LandingLayout from "@/Layouts/LandingLayout";
 import Hero from "./Section/Hero";
 import About from "./Section/About";
 import Projects from "./Section/Projects";
+import Contact from "./Section/Contact";
 
 export default function Landing() {
     return (
@@ -10,6 +11,7 @@ export default function Landing() {
                 <Hero />
                 <About />
                 <Projects />
+                <Contact />
             </div>
         </LandingLayout>
     );
