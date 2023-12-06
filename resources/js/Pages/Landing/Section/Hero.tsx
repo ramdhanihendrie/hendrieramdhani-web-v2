@@ -1,3 +1,4 @@
+import PrimaryButton from "@/Components/PrimaryButton";
 
 export default function Hero (){
   return (
@@ -8,13 +9,14 @@ export default function Hero (){
       <div className="mt-5 sm:mt-0">
         <h2 className="text-3xl font-semibold">Hello, I'm</h2>
         <h1 className="text-5xl font-semibold">Hendrie Ramdhani</h1>
-        <p className="py-6">Front-End Web Developer</p>
+        <p className="py-6">Full-Stack Web Developer</p>
         <a 
-          className="bg-indigo-500 rounded px-3 py-2 text-white" 
           href="assets/files/Hendrie Ramdhani-resume.pdf" 
           download
         >
-          Download CV
+          <PrimaryButton>
+            Download CV
+          </PrimaryButton>
         </a>
       </div>
     </section>
