@@ -18,7 +18,7 @@ export default function Certificates () {
             return (
               <div key={certificate.id} className="break-inside-avoid p-5">
                 <img 
-                  src={`storage/certificates/${certificate.name}.jpg`} 
+                  src={`assets/certificates/${certificate.name}.jpg`} 
                   alt={certificate.name} 
                   loading="lazy"
                 />
