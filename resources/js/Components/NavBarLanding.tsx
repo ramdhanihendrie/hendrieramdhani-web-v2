@@ -27,8 +27,8 @@ const Navbar = () => {
                 <div className="flex flex-1 justify-end px-4">
                     <div className="ml-4 flex gap-5 items-center md:ml-6 text-grey-900 dark:text-white font-bold">
                         {
-                            navList.map((nav) => (
-                                <Link href={nav.link} className='hover:text-gray-500'>
+                            navList.map((nav, idx) => (
+                                <Link key={idx} href={nav.link} className='hover:text-gray-500'>
                                     {nav.title}
                                 </Link>
                             ))
