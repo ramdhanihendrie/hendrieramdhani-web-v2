@@ -7,7 +7,7 @@ import Contact from "./Section/Contact";
 export default function Landing() {
     return (
         <LandingLayout>
-            <div className="container mx-auto py-3">
+            <div className="container mx-auto py-3 scroll-smooth">
                 <Hero />
                 <About />
                 <Projects />
