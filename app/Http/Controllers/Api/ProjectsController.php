@@ -11,7 +11,6 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = Projects::get();
-        // return new ProjectResource(true, 'Projects Data List', $projects);
         return $projects;
     }
 }
