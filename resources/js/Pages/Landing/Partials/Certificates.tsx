@@ -1,24 +1,33 @@
-const certificateList = [
-  {id: "1", name: "React JS for Web Development"},
-  {id: "2", name: "Front End Developer"},
-  {id: "3", name: "The Complete Front End Web Development"},
-  {id: "4", name: "Speaker WebDev Class"},
-  {id: "5", name: "Web Development Course NodeJS"},
-  {id: "6", name: "Belajar Dasar Pemrograman Web"},
-]
+import axios from "axios";
+import { useEffect, useState } from "react";
+
+interface ICertificate {
+  id: number;
+  name: string;
+  image: string;
+}
+const defaultCertificates:ICertificate[] = [];
 
 export default function Certificates () {
+  const [certificatesList, setCertificatesList]: [ICertificate[], (project: ICertificate[]) => void] = useState(defaultCertificates);
+  
+  useEffect(() => {
+    axios.get<ICertificate[]>('/api/certificates').then(response => {
+      setCertificatesList(response.data)
+    })
+  }, []);
+  
   return (
     <div>
       <h3 className="text-indigo-500 font-semibold text-2xl mt-20">Certificates:</h3>
       <p className="text-justify tracking-wide leading-7 mt-3">I have learned several skills through courses, certifications and other events, here are some of the skill certificates I have.</p>
       <div className="columns-1 md:columns-2 gap-0 xl:px-40">
         {
-          certificateList.map((certificate) => {
+          certificatesList.map((certificate) => {
             return (
               <div key={certificate.id} className="break-inside-avoid p-5">
                 <img 
-                  src={`assets/certificates/${certificate.name}.jpg`} 
+                  src={certificate.image} 
                   alt={certificate.name} 
                   loading="lazy"
                 />
