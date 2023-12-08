@@ -9,7 +9,7 @@ interface ICertificate {
 const defaultCertificates:ICertificate[] = [];
 
 export default function Certificates () {
-  const [certificatesList, setCertificatesList]: [ICertificate[], (project: ICertificate[]) => void] = useState(defaultCertificates);
+  const [certificatesList, setCertificatesList]: [ICertificate[], (certificate: ICertificate[]) => void] = useState(defaultCertificates);
   
   useEffect(() => {
     axios.get<ICertificate[]>('/api/certificates').then(response => {
