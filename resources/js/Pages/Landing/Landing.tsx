@@ -3,10 +3,11 @@ import Hero from "./Section/Hero";
 import About from "./Section/About";
 import Projects from "./Section/Projects";
 import Contact from "./Section/Contact";
+import { PageProps } from "@/types";
 
-export default function Landing() {
+export default function Landing({ auth }: PageProps) {
     return (
-        <LandingLayout>
+        <LandingLayout user={auth.user}>
             <div className="container mx-auto py-3 scroll-smooth">
                 <Hero />
                 <About />

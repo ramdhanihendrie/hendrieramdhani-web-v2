@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import ToggleTheme from './ToggleTheme';
 import ApplicationLogo from './ApplicationLogo';
 import { Link } from '@inertiajs/react';
+import { User } from '@/types';
 import PrimaryButton from './PrimaryButton';
 
 const navList = [
@@ -11,7 +12,11 @@ const navList = [
     { link: "#contact", title: "Contact" },
 ]
 
-const Navbar = () => { 
+interface IUser {
+    user: User
+}
+
+const Navbar = ({ user }: IUser)=> { 
     return (
         <div 
             className={clsx(
@@ -35,11 +40,36 @@ const Navbar = () => {
                         }
                     </div>
                 </div>
-                <Link href={route('login')} className='border-r-2 pe-2 me-2 border-slate-500'>
-                    <PrimaryButton>
-                        Log In
-                    </PrimaryButton>
-                </Link>
+                {/* role admin */}
+                { 
+                    user?.role == "admin" && (
+                        <Link href={route('adminDashboard')} className='border-r-2 pe-2 me-2 border-slate-500'>
+                            <PrimaryButton>
+                                Dashboard
+                            </PrimaryButton>
+                        </Link> 
+                    )
+                } 
+                {/* role user */}
+                { 
+                    user?.role == "user" && (
+                        <Link href={route('userDashboard')} className='border-r-2 pe-2 me-2 border-slate-500'>
+                            <PrimaryButton>
+                                Dashboard
+                            </PrimaryButton>
+                        </Link> 
+                    )
+                } 
+                {/* Unauthenticated */}
+                {
+                    !user && (
+                        <Link href={route('login')} className='border-r-2 pe-2 me-2 border-slate-500'>
+                            <PrimaryButton>
+                                Log In
+                            </PrimaryButton>
+                        </Link>
+                    )
+                }
                 <ToggleTheme />
             </div>
         </div>
