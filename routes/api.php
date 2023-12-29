@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CertificatesController;
 use App\Http\Controllers\Api\EducationsController;
 use App\Http\Controllers\Api\TechsController;
 use App\Http\Controllers\Api\HeroesController;
+use App\Http\Controllers\Api\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::apiResource('/landing', LandingController::class);
 Route::apiResource('/projects', ProjectsController::class);
 Route::apiResource('/certificates', CertificatesController::class);
 Route::apiResource('/educations', EducationsController::class);
