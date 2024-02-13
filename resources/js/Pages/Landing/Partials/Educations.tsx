@@ -1,36 +1,25 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { EducationProps } from "@/interface/landing";
+import { useAppSelector } from "@/redux/hooks";
 
-interface IEducation {
-  id: number;
-  school: string;
-  description: string;
-}
-const defaultEducations:IEducation[] = [];
+export default function Educations() {
+  const education = useAppSelector((state) => state.landing.data.education);
 
-export default function Educations () {
-  const [educationsList, setEducationsList]: [IEducation[], (certificate: IEducation[]) => void] = useState(defaultEducations);
-  
-  useEffect(() => {
-    axios.get<IEducation[]>('/api/educations').then(response => {
-      setEducationsList(response.data)
-    })
-  }, []);
-  
   return (
     <div>
-      <h3 className="text-indigo-500 font-semibold text-2xl mt-20">Education:</h3>
-      <p className="text-justify tracking-wide leading-7 mt-3">I have taken formal education at university and in training, here are some of the educations that I have taken.</p>
-      {
-        educationsList.map((edu) => {
-          return (
-            <div key={edu.school}>
-              <li className="font-bold text-xl mt-3">{edu.school}</li>
-              <p className="ml-7 leading-loose">{edu.description}</p>
-            </div>
-          )
-        })
-      }
+      <h3 className="mt-20 text-2xl font-semibold text-indigo-500">
+        {education.title} :
+      </h3>
+      <p className="mt-3 text-justify leading-7 tracking-wide">
+        {education.description}
+      </p>
+      {education.educationList.map((edu: EducationProps) => {
+        return (
+          <div key={edu.school}>
+            <li className="mt-3 text-xl font-bold">{edu.school}</li>
+            <p className="ml-7 leading-loose">{edu.description}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }

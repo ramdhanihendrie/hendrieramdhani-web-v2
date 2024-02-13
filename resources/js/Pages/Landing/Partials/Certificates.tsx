@@ -1,40 +1,29 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { CertificateProps } from "@/interface/landing";
+import { useAppSelector } from "@/redux/hooks";
 
-interface ICertificate {
-  id: number;
-  name: string;
-  image: string;
-}
-const defaultCertificates:ICertificate[] = [];
+export default function Certificates() {
+  const certificate = useAppSelector((state) => state.landing.data.certificate);
 
-export default function Certificates () {
-  const [certificatesList, setCertificatesList]: [ICertificate[], (certificate: ICertificate[]) => void] = useState(defaultCertificates);
-  
-  useEffect(() => {
-    axios.get<ICertificate[]>('/api/certificates').then(response => {
-      setCertificatesList(response.data)
-    })
-  }, []);
-  
   return (
     <div>
-      <h3 className="text-indigo-500 font-semibold text-2xl mt-20">Certificates:</h3>
-      <p className="text-justify tracking-wide leading-7 mt-3">I have learned several skills through courses, certifications and other events, here are some of the skill certificates I have.</p>
-      <div className="columns-1 md:columns-2 gap-0 xl:px-40">
-        {
-          certificatesList.map((certificate) => {
-            return (
-              <div key={certificate.id} className="break-inside-avoid p-5">
-                <img 
-                  src={certificate.image} 
-                  alt={certificate.name} 
-                  loading="lazy"
-                />
-              </div>
-            )
-          })
-        }
+      <h3 className="mt-20 text-2xl font-semibold text-indigo-500">
+        {certificate.title} :
+      </h3>
+      <p className="mt-3 text-justify leading-7 tracking-wide">
+        {certificate.description}
+      </p>
+      <div className="columns-1 gap-0 md:columns-2 xl:px-40">
+        {certificate.certificateList.map((certificate: CertificateProps) => {
+          return (
+            <div key={certificate.id} className="break-inside-avoid p-5">
+              <img
+                src={certificate.image}
+                alt={certificate.name}
+                loading="lazy"
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

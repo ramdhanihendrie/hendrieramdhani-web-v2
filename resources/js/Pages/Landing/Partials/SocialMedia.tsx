@@ -1,22 +1,29 @@
-import { Link } from "@inertiajs/react";
-import { FaGithub, FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { useAppSelector } from "@/redux/hooks";
+import * as ReactIcons from "react-icons/si";
 
 const socialMedia = () => {
-  const sosMedList = [
-    { link: "https://github.com/ramdhanihendrie/" , Icon: FaGithub},
-    { link: "https://linkedin.com/in/hendrieramdhani/" , Icon: FaLinkedin},
-    { link: "https://instagram.com/ramdhanihendrie/" , Icon: FaInstagram},
-    { link: "https://x.com/ramdhanihendrie/" , Icon: FaXTwitter},
-  ]
-  return (
-    <div className="grid grid-flow-col gap-3 mt-2 justify-center sm:justify-start">
-      {sosMedList.map((sosMed, idx) => (
-        <a key={idx} href={sosMed.link} target="_blank" className="text-3xl">
-          <sosMed.Icon />
-        </a>
-      ))}
-    </div>
-  )
-}
+  const socialMediaList = useAppSelector(
+    (state) => state.landing.data.socialMedia,
+  );
 
-export default socialMedia
+  return (
+    <div className="mt-2 grid grid-flow-col justify-center gap-3 sm:justify-start">
+      {socialMediaList.map((socialMedia, idx) => {
+        const Icon = ReactIcons[socialMedia.icon];
+
+        return (
+          <a
+            key={idx}
+            href={socialMedia.link}
+            target="_blank"
+            className="text-3xl"
+          >
+            <Icon />
+          </a>
+        );
+      })}
+    </div>
+  );
+};
+
+export default socialMedia;

@@ -33,9 +33,9 @@ const Navbar = ({ user }: IUser)=> {
                     <div className="ml-4 flex gap-5 items-center md:ml-6 text-grey-900 dark:text-white font-bold">
                         {
                             navList.map((nav, idx) => (
-                                <Link key={idx} href={nav.link} className='hover:text-gray-500'>
+                                <a key={idx} href={nav.link} className='hover:text-gray-500'>
                                     {nav.title}
-                                </Link>
+                                </a>
                             ))
                         }
                     </div>

@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Techs extends Model
+class Section extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class Techs extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'icon',
+        'title',
+        'description',
     ];
 }

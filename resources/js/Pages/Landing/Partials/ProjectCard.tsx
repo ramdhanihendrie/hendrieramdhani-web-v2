@@ -1,35 +1,28 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import SecondaryButton from "@/Components/SecondaryButton";
+import { ProjectProps } from "@/interface/landing";
 
-interface ProjectCardProps {
-  title: string,
-  desc: string,
-  link: string,
-  repo: string,
-  image: string,
-}
-
-export default function ProjectCard ({
+export default function ProjectCard({
   title,
-  desc,
+  description,
   link,
   repo,
-  image
-} : ProjectCardProps) {
+  image,
+}: Omit<ProjectProps, "id">) {
   return (
-    <div className="bg-gray-200 dark:bg-gray-700 rounded-md p-3 flex flex-col">
-      <img  src={image}/>
-      <h4 className="text-indigo-500 text-xl font-semibold mt-3">{title}</h4>
-      <p className="text-justify">{desc}</p>
-      <div className="flex mt-auto justify-between gap-2 pt-2">
+    <div className="flex flex-col rounded-md bg-gray-200 p-3 dark:bg-gray-700">
+      <img src={image} />
+      <h4 className="mt-3 text-xl font-semibold text-indigo-500">{title}</h4>
+      <p className="text-justify">{description}</p>
+      <div className="mt-auto flex justify-between gap-2 pt-2">
         <PrimaryButton className="w-full">
           <a href={link} target="_blank" rel="noreferrer">
-              View Live
+            View Live
           </a>
         </PrimaryButton>
         <SecondaryButton className="w-full">
           <a href={repo} target="_blank" rel="noreferrer">
-              Repository
+            Repository
           </a>
         </SecondaryButton>
       </div>

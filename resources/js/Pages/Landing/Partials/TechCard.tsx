@@ -2,10 +2,10 @@ import * as ReactIcons from 'react-icons/si';
 
 interface TechCardProps {
   icon: keyof typeof ReactIcons
-  name: string
+  techName: string
 }
 
-export default function TechCard ({icon, name}: TechCardProps) {
+export default function TechCard ({icon, techName}: TechCardProps) {
   const Icon = ReactIcons[icon];
 
   return (
@@ -13,7 +13,7 @@ export default function TechCard ({icon, name}: TechCardProps) {
       <div className="block mx-auto">
         <Icon size={64} />
       </div>
-      <h5 className="mt-5 font-semibold">{name}</h5>
+      <h5 className="mt-5 font-semibold">{techName}</h5>
     </div>
   )
 }
